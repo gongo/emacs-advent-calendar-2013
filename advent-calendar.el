@@ -39,6 +39,7 @@
 
 ;;; Code:
 
+(eval-when-compile (require 'cl))
 (require 'xml)
 (require 'helm)
 
@@ -449,7 +450,7 @@ Not exists, return nil."
 ;;-----------------------------------------------------
 
 (defun advent-calendar:atnd:get-url (url)
-  (concat (replace-in-string url "/events/" "/comments/") ".rss"))
+  (concat (replace-regexp-in-string "/events/" "/comments/" url) ".rss"))
 
 (defun advent-calendar:atnd:get-entries ()
   (let ((tree (car (xml-parse-region (point-min) (point-max)))))
